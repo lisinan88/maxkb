@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  maxkb:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./python-packages:/opt/maxkb/app/sandbox/python-packages
+    environment:
+      - POSTGRES_DB=maxkb
+      - POSTGRES_USER=maxkb
+      - POSTGRES_PASSWORD=maxkb123
+    depends_on:
+      - postgres
+    restart: always
+
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      - POSTGRES_DB=maxkb
+      - POSTGRES_USER=maxkb
+      - POSTGRES_PASSWORD=maxkb123
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  postgres_data:

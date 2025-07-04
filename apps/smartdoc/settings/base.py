@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'dataset',
     'application',
     'embedding',
+    'aiops.apps.AiopsConfig',
     'django.contrib.contenttypes',
     'django.contrib.messages',
     'django.contrib.staticfiles',
